@@ -34,6 +34,14 @@
 			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
 		</IconStyle>
 		<BalloonStyle>
+			<text>
+        <![CDATA[
+          This is 
+          This is hole 
+          The par for this hole
+          The yardage is
+        ]]>
+      </text>
 		</BalloonStyle>
 		<PolyStyle>
 			<color>ffff0000</color>
