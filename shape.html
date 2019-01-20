@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <title>Shapes</title>
+
+  <style type="text/css">
+    #map {
+      height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="map"></div>
+  <!-- Replace the value of the key parameter with your own API key. -->
+  <script type="text/javascript" charset="UTF-8">
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 8,
+        center: {
+          lat: -19.70962985,
+          lng: 147.27285617
+        },
+        mapTypeId: 'terrain'
+      });
+      var myLatlng = {
+	  
+        lat: -19.70962985,
+        lng: 147.272856174
+      };
+	   var myLatlng1 = {
+        lat: -19.73483589264107,
+        lng: 147.50538181853
+      };
+      // Define the LatLng coordinates for the polygon's path.
+      var p = [{
+        lat: -19.664765,
+        lng: 147.253891
+      }, {
+        lat: -19.665564,
+        lng: 147.26369
+      }, {
+        lat: -19.674634,
+        lng: 147.262935
+      }, {
+        lat: -19.673395,
+        lng: 147.252939
+      }];
+        var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        title: 'Click to zoom1243'
+      });
+	   var marker1 = new google.maps.Marker({
+        position: myLatlng1,
+        map: map,
+        title: 'Click to zoom123'
+      });
+      marker.addListener('click', function() {
+        map.setZoom(12);
+        map.setCenter(marker.getPosition());
+        var shapes = new google.maps.Polygon({
+          paths: p,
+          strokeColor: 'blue',
+          strokeOpacity: 0.8,
+          strokeWeight: 20,
+          fillColor: '#FF0000',
+          fillOpacity: 0.35
+        });
+        shapes.setMap(map);
+
+      }); 
+	       marker1.addListener('click', function() {
+        map.setZoom(12);
+        map.setCenter(marker.getPosition());
+      
+
+      }); 
+      var ctaLayer = new google.maps.KmlLayer({
+        url: 'https://raw.githubusercontent.com/aremesh/angular2practice/master/Regions1.kml',
+        map: map
+      });
+
+      google.maps.event.addListener(ctaLayer, 'click', function(kmlEvent) {
+        var text = kmlEvent.featureData.description;
+        //alert(text);
+      });
+
+      // Construct the polygon.
+
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwgejQKz9aAyhO4zVtQmTnH3a9W67r1gk&callback=initMap">
+  </script>
+
+</body>
+
+</html>
